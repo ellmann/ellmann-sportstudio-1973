@@ -485,6 +485,25 @@
       width: 100%;
       aspect-ratio: 16/9;
     }
+
+    /* iPhone-kompatibler Iframe-Container (padding-bottom Trick) */
+    .video-responsive-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-responsive-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
     .tv-caption {
       background: var(--grau-dunkel);
       border-top: 2px solid var(--gelb);
@@ -1154,14 +1173,17 @@
     <div class="section-title">Der TV-Auftritt · 3. März 1973</div>
     <div class="retro-tv">
       <div class="tv-frame">
-        <iframe
-          src="https://archive.org/embed/ellmann_1973_web"
-          width="100%"
-          style="aspect-ratio:16/9;border:none;display:block;"
-          allowfullscreen
-          allow="fullscreen"
-          title="Siegfried Ellmann – ZDF Sportstudio, 3. März 1973"
-        ></iframe>
+        <div class="video-responsive-wrap">
+          <iframe
+            src="https://archive.org/embed/ellmann_1973_web?autoplay=0&start=0"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            allow="fullscreen"
+            title="Siegfried Ellmann – ZDF Sportstudio, 3. März 1973"
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
       <div class="tv-caption">ZDF · das aktuelle sportstudio · 3. März 1973 · Wiesbaden · Moderatorin: Carmen Thomas · Gast: Siegfried Ellmann, BV Varrelbusch</div>
     </div>
