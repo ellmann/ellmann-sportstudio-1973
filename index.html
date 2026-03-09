@@ -959,6 +959,16 @@
   <div class="section">
     <div class="section-label">Steckbrief</div>
     <div class="section-title">Siegfried Ellmann</div>
+    <!-- Foto + Steckbrief nebeneinander -->
+    <div style="display:flex;gap:40px;align-items:flex-start;margin-bottom:8px;">
+      <div style="flex-shrink:0;">
+        <img src="images/ellmann_foto.jpg"
+             alt="Siegfried Ellmann mit Fußball"
+             style="width:220px;border:4px solid var(--gelb);display:block;box-shadow:0 6px 24px rgba(0,0,0,0.6);"
+        >
+        <div style="text-align:center;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--gelb);text-transform:uppercase;margin-top:8px;">Siegfried Ellmann · BV Varrelbusch</div>
+      </div>
+      <div style="flex:1;">
     <div class="steckbrief-grid">
       <div class="steckbrief-item">
         <div class="steckbrief-key">Geburtsdatum</div>
@@ -990,6 +1000,8 @@
         <div style="font-size:13px;color:var(--weiss-vergilbt);margin-top:4px;letter-spacing:0.1em;">ZDF-Sportstudio · 3. März 1973 · Wiesbaden · Moderatorin: Carmen Thomas</div>
       </div>
     </div>
+      </div><!-- Ende flex-rechts -->
+    </div><!-- Ende flex-wrap -->
   </div>
 </div>
 
