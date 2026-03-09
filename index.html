@@ -770,6 +770,89 @@
       margin-top: 8px;
     }
 
+    /* ===== LEGAL SEKTIONEN ===== */
+    .legal-section {
+      background: #0d0d0d;
+      border-top: 1px solid #222;
+      padding: 60px 40px;
+    }
+    .legal-section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .legal-section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .legal-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .legal-tab {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      background: #1a1a1a;
+      color: var(--grau-hell);
+      border: 1px solid #333;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .legal-tab:hover, .legal-tab.active {
+      background: var(--gelb);
+      color: var(--schwarz);
+      border-color: var(--gelb);
+    }
+    .legal-panel { display: none; }
+    .legal-panel.active { display: block; }
+    .legal-panel h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--gelb);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 28px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .legal-panel h3:first-child { margin-top: 0; }
+    .legal-panel p, .legal-panel li {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+    .legal-panel ul { padding-left: 20px; margin-bottom: 10px; }
+    .legal-panel a { color: var(--gelb); text-decoration: none; }
+    .legal-panel a:hover { text-decoration: underline; }
+    .legal-address {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px;
+      line-height: 2;
+      color: #ccc;
+      background: #1a1a1a;
+      border-left: 3px solid var(--gelb);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .legal-stand { font-size: 12px; color: #555; margin-top: 24px; }
+    @media (max-width: 600px) {
+      .legal-section { padding: 32px 16px; }
+      .legal-tab { font-size: 11px; padding: 8px 14px; }
+      .legal-panel p, .legal-panel li { font-size: 13px; }
+    }
+
     /* ===== FOOTER ===== */
     .footer {
       background: var(--schwarz);
@@ -1461,6 +1544,99 @@
   </div>
 </div>
 
+<!-- LEGAL: KONTAKT / IMPRESSUM / DATENSCHUTZ -->
+<div class="legal-section" id="legal">
+  <div class="legal-section-inner">
+    <div class="legal-section-title">Rechtliches</div>
+    <div class="legal-tabs">
+      <button class="legal-tab active" onclick="showLegal('kontakt')">Kontakt</button>
+      <button class="legal-tab" onclick="showLegal('impressum')">Impressum</button>
+      <button class="legal-tab" onclick="showLegal('datenschutz')">Datenschutzerklärung</button>
+    </div>
+
+    <!-- KONTAKT -->
+    <div class="legal-panel active" id="panel-kontakt">
+      <h3>Kontakt</h3>
+      <div class="legal-address">
+        LUNEXIUM<br>
+        Marco Ellmann<br>
+        Nottelmannufer 8a<br>
+        30655 Hannover<br>
+        Deutschland
+      </div>
+      <p>E-Mail: <a href="mailto:info@lunexium.de">info@lunexium.de</a></p>
+      <p>Website: <a href="https://www.lunexium.de" target="_blank" rel="noopener">www.lunexium.de</a></p>
+    </div>
+
+    <!-- IMPRESSUM -->
+    <div class="legal-panel" id="panel-impressum">
+      <h3>Verantwortlicher für den Inhalt gemäß § 5 TMG</h3>
+      <div class="legal-address">
+        LUNEXIUM<br>
+        Marco Ellmann<br>
+        Nottelmannufer 8a<br>
+        30655 Hannover<br>
+        Deutschland
+      </div>
+      <h3>Kontakt</h3>
+      <p>E-Mail: <a href="mailto:info@lunexium.de">info@lunexium.de</a><br>
+      Website: <a href="https://www.lunexium.de" target="_blank" rel="noopener">www.lunexium.de</a></p>
+      <h3>Umsatzsteuer-Identifikationsnummer</h3>
+      <p>DE241868288</p>
+      <h3>Haftungsausschluss</h3>
+      <p><strong style="color:#ccc">Haftung für Inhalte</strong><br>
+      Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <p><strong style="color:#ccc">Haftung für Links</strong><br>
+      Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+      <p><strong style="color:#ccc">Urheberrecht</strong><br>
+      Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+    </div>
+
+    <!-- DATENSCHUTZ -->
+    <div class="legal-panel" id="panel-datenschutz">
+      <h3>Einleitung</h3>
+      <p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung. Diese Website ist ein rein statisches Informationsangebot. Es werden keine Nutzerkonten erstellt und keine personenbezogenen Daten dauerhaft gespeichert.</p>
+      <h3>Privacy by Design</h3>
+      <p>Diese Website wurde mit Datenschutz als Kernprinzip entwickelt. Alle Inhalte werden statisch ausgeliefert; es findet keine serverseitige Verarbeitung von Nutzerdaten statt.</p>
+      <p><strong style="color:#ccc">Kein Cookie-Consent erforderlich:</strong> Diese Website verwendet keine Tracking-Cookies und keine Drittanbieter-Werbe-Cookies. Gemäß DSGVO und ePrivacy-Verordnung ist für den Betrieb dieser Website kein Cookie-Consent-Banner erforderlich.</p>
+      <h3>Verantwortlicher (Art. 4 Nr. 7 DSGVO)</h3>
+      <div class="legal-address">
+        LUNEXIUM<br>
+        Marco Ellmann<br>
+        Nottelmannufer 8a · 30655 Hannover · Deutschland<br>
+        E-Mail: <a href="mailto:info@lunexium.de">info@lunexium.de</a>
+      </div>
+      <h3>Erhobene Daten beim Besuch dieser Website</h3>
+      <p><strong style="color:#ccc">Technische Zugriffsdaten (Server-Logs)</strong><br>
+      Beim Aufruf dieser Website übermittelt Ihr Browser automatisch technische Daten an den Hosting-Server, darunter IP-Adresse, Browsertyp und -version, Betriebssystem, Referrer-URL sowie Datum und Uhrzeit des Zugriffs. Diese Daten werden ausschließlich zur Sicherstellung des technischen Betriebs und zur Fehleranalyse verwendet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb).</p>
+      <p><strong style="color:#ccc">Browser-Speicher</strong><br>
+      Diese Website speichert keine Daten im lokalen Browser-Speicher (localStorage oder sessionStorage).</p>
+      <h3>Externe Dienste</h3>
+      <p><strong style="color:#ccc">GitHub Pages (Hosting)</strong><br>
+      Diese Website wird über GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Website werden technische Zugriffsdaten an die Server von GitHub übertragen. Weitere Informationen: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</p>
+      <p><strong style="color:#ccc">Internet Archive (Videoplayer)</strong><br>
+      Das eingebettete Video wird über das Internet Archive (Internet Archive, 300 Funston Ave., San Francisco, CA 94118, USA) ausgeliefert. Beim Abspielen des Videos können technische Daten an die Server des Internet Archive übertragen werden. Weitere Informationen: <a href="https://archive.org/about/terms.php" target="_blank" rel="noopener">Internet Archive Terms of Use</a>.</p>
+      <p><strong style="color:#ccc">Google Fonts</strong><br>
+      Diese Website lädt Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Dabei wird Ihre IP-Adresse an Google-Server übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutzerklärung</a>.</p>
+      <h3>Kein Konto, keine nutzergenerierten Inhalte</h3>
+      <p>Diese Website bietet keine Möglichkeit zur Registrierung oder Anmeldung. Es werden keine Nutzerkonten angelegt und keine nutzergenerierten Inhalte gespeichert. Eine Kontaktaufnahme ist ausschließlich per E-Mail möglich (siehe Impressum).</p>
+      <h3>Ihre Rechte (Art. 15–21 DSGVO)</h3>
+      <p>Da diese Website keine personenbezogenen Daten dauerhaft speichert, sind die meisten DSGVO-Betroffenenrechte faktisch nicht anwendbar. Soweit dennoch personenbezogene Daten verarbeitet werden (z. B. in Server-Logs), haben Sie folgende Rechte:</p>
+      <ul>
+        <li>Auskunftsrecht (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Widerspruchsrecht (Art. 21 DSGVO)</li>
+        <li>Beschwerderecht bei einer Aufsichtsbehörde</li>
+      </ul>
+      <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte an die im Impressum genannte Adresse. Zuständige Aufsichtsbehörde ist die Landesbeauftragte für den Datenschutz Niedersachsen (LfD).</p>
+      <p class="legal-stand">Stand: März 2026</p>
+    </div>
+
+  </div>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-logo">
@@ -1475,7 +1651,10 @@
   <div class="footer-text">
     das aktuelle sportstudio · ZDF · Samstag, 3. März 1973 · Wiesbaden<br>
     Moderatorin: Carmen Thomas · Gast: Siegfried Ellmann, BV Varrelbusch<br><br>
-    Quellen: NWZ Online · OM-Online · Stephan Tönnies (Herkules-Verlag) · ZDF-Archiv · Wikipedia
+    Quellen: NWZ Online · OM-Online · Stephan Tönnies (Herkules-Verlag) · ZDF-Archiv · Wikipedia<br><br>
+    <a href="#legal" onclick="showLegal('kontakt')">Kontakt</a> &nbsp;·&nbsp;
+    <a href="#legal" onclick="showLegal('impressum')">Impressum</a> &nbsp;·&nbsp;
+    <a href="#legal" onclick="showLegal('datenschutz')">Datenschutzerklärung</a>
   </div>
 </div>
 
@@ -1534,7 +1713,16 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
   });
-</script>
 
+  // Legal-Tabs umschalten
+  function showLegal(panel) {
+    document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + panel).classList.add('active');
+    const tabs = document.querySelectorAll('.legal-tab');
+    const labels = ['kontakt', 'impressum', 'datenschutz'];
+    tabs[labels.indexOf(panel)].classList.add('active');
+  }
+</script>
 </body>
 </html>
