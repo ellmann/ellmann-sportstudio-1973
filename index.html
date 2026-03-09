@@ -486,63 +486,23 @@
       aspect-ratio: 16/9;
     }
 
-    /* Click-to-Play Video-Poster (iOS/Safari-kompatibel) */
-    .video-poster-wrap {
+    /* YouTube-kompatibler Iframe-Container (padding-bottom Trick) */
+    .video-responsive-wrap {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
       overflow: hidden;
-      cursor: pointer;
+      background: #000;
     }
-    .video-poster-wrap img {
+    .video-responsive-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      border: none;
       display: block;
-      transition: opacity 0.3s;
-    }
-    .video-poster-wrap:hover img {
-      opacity: 0.75;
-    }
-    .video-play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 72px;
-      height: 72px;
-      background: rgba(200,150,12,0.92);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.6);
-      transition: transform 0.2s, background 0.2s;
-    }
-    .video-poster-wrap:hover .video-play-btn {
-      background: rgba(200,150,12,1);
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-    .video-play-btn svg {
-      width: 28px;
-      height: 28px;
-      fill: #0a0a0a;
-      margin-left: 4px;
-    }
-    .video-open-hint {
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      pointer-events: none;
     }
     .tv-caption {
       background: var(--grau-dunkel);
@@ -1296,13 +1256,15 @@
     <div class="section-title">Der TV-Auftritt · 3. März 1973</div>
     <div class="retro-tv">
       <div class="tv-frame">
-        <a class="video-poster-wrap" href="https://archive.org/details/ellmann_1973_web" target="_blank" rel="noopener" title="Video auf archive.org ansehen">
-          <img src="images/video_poster.jpg" alt="Vorschaubild: Siegfried Ellmann im ZDF-Sportstudio 1973" loading="lazy">
-          <div class="video-play-btn">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-          </div>
-          <div class="video-open-hint">Video ansehen &rarr; archive.org</div>
-        </a>
+        <div class="video-responsive-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/a7h3NTGhdNs?rel=0&modestbranding=1"
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title="Siegfried Ellmann – ZDF Sportstudio, 3. März 1973"
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
       <div class="tv-caption">ZDF · das aktuelle sportstudio · 3. März 1973 · Wiesbaden · Moderatorin: Carmen Thomas · Gast: Siegfried Ellmann, BV Varrelbusch</div>
     </div>
@@ -1681,8 +1643,8 @@
       <h3>Externe Dienste</h3>
       <p><strong style="color:#ccc">GitHub Pages (Hosting)</strong><br>
       Diese Website wird über GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Website werden technische Zugriffsdaten an die Server von GitHub übertragen. Weitere Informationen: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</p>
-      <p><strong style="color:#ccc">Internet Archive (Videoplayer)</strong><br>
-      Das eingebettete Video wird über das Internet Archive (Internet Archive, 300 Funston Ave., San Francisco, CA 94118, USA) ausgeliefert. Beim Abspielen des Videos können technische Daten an die Server des Internet Archive übertragen werden. Weitere Informationen: <a href="https://archive.org/about/terms.php" target="_blank" rel="noopener">Internet Archive Terms of Use</a>.</p>
+      <p><strong style="color:#ccc">YouTube (Videoplayer)</strong><br>
+      Das eingebettete Video wird über YouTube (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) ausgeliefert. Es wird die datenschutzfreundliche Domain <code>youtube-nocookie.com</code> verwendet, die keine Cookies setzt, solange das Video nicht abgespielt wird. Beim Abspielen können technische Daten an Google-Server übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutzerklärung</a>.</p>
       <p><strong style="color:#ccc">Google Fonts</strong><br>
       Diese Website lädt Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Dabei wird Ihre IP-Adresse an Google-Server übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutzerklärung</a>.</p>
       <h3>Kein Konto, keine nutzergenerierten Inhalte</h3>
