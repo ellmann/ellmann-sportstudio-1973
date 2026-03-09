@@ -778,17 +778,157 @@
       text-decoration: none;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .hero-content { grid-template-columns: 1fr; gap: 30px; }
-      .steckbrief-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: 1fr; }
-      .technik-grid { grid-template-columns: 1fr; }
+    /* ===== RESPONSIVE – TABLET (max 900px) ===== */
+    @media (max-width: 900px) {
       .bio-grid { grid-template-columns: 1fr; }
-      .interview-entry { grid-template-columns: 1fr; gap: 6px; }
-      .section { padding: 40px 20px; }
-      .studio-header { padding: 10px 20px; }
-      .audio-bar { padding: 8px 20px; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .hero-content { gap: 40px; }
+    }
+
+    /* ===== RESPONSIVE – MOBIL HOCHFORMAT (max 600px) ===== */
+    @media (max-width: 600px) {
+
+      /* --- Intro --- */
+      .intro-titel {
+        font-size: clamp(38px, 14vw, 60px);
+        padding: 0 16px;
+      }
+      .intro-datum {
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-align: center;
+        padding: 0 16px;
+      }
+      .intro-logo-band { padding: 14px 0; margin-bottom: 24px; }
+
+      /* --- Ticker --- */
+      .ticker-inner span {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        padding: 0 30px;
+      }
+
+      /* --- Studio-Header --- */
+      .studio-header {
+        padding: 8px 14px;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .studio-header-left { gap: 10px; }
+      .studio-header-left img { height: 26px; }
+      .studio-header-title strong { font-size: 13px; }
+      .studio-header-title { font-size: 10px; }
+      .studio-header-right { font-size: 10px; letter-spacing: 0.08em; }
+
+      /* --- Audio-Leiste --- */
+      .audio-bar {
+        padding: 6px 14px;
+        gap: 10px;
+      }
+      .audio-label { font-size: 9px; }
+      .audio-note { display: none; }
+
+      /* --- Hero --- */
+      .hero { padding: 30px 16px 30px; }
+      .studio-schild { padding: 12px 20px; margin-bottom: 24px; }
+      .studio-schild-text { font-size: clamp(18px, 6vw, 28px); }
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .hero-name-block { padding: 10px 0; }
+      .hero-name { font-size: clamp(42px, 13vw, 72px); }
+      .hero-subtitle { font-size: 10px; letter-spacing: 0.2em; }
+      .hero-verein { font-size: 12px; letter-spacing: 0.12em; }
+      .hero-treffer-badge { font-size: 11px; padding: 8px 16px; }
+
+      /* --- Torwand --- */
+      .torwand-container { width: 100%; }
+      .torwand-svg-wrap { padding: 10px; }
+      .torwand-ball { width: 36px; height: 36px; font-size: 14px; }
+      .torwand-counter { gap: 6px; }
+      .torwand-label { font-size: 10px; }
+
+      /* --- Allgemeine Sektionen --- */
+      .section { padding: 32px 16px; }
+      .section-title {
+        font-size: clamp(22px, 7vw, 34px);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+      }
+      .section-label { font-size: 10px; letter-spacing: 0.25em; }
+
+      /* --- Steckbrief --- */
+      /* Foto + Steckbrief untereinander auf Mobil */
+      div[style*="display:flex"][style*="gap:40px"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+      }
+      div[style*="display:flex"][style*="gap:40px"] img {
+        width: 160px !important;
+        margin: 0 auto;
+      }
+      .steckbrief-grid { grid-template-columns: 1fr; }
+      .steckbrief-item { padding: 14px 16px; }
+      .steckbrief-value { font-size: 17px; }
+      .steckbrief-value.highlight { font-size: 26px; }
+
+      /* --- Video --- */
+      .video-section-wrap { padding: 32px 16px; }
+      .tv-frame { border-width: 4px; }
+      .tv-caption { font-size: 10px; padding: 8px 12px; }
+
+      /* --- Statistik-Karten --- */
+      .stats-row { grid-template-columns: 1fr; }
+      .stat-card { padding: 20px 16px; }
+      .stat-number { font-size: 44px; }
+      .stat-label { font-size: 10px; }
+
+      /* --- Technik-Karten --- */
+      .technik-grid { grid-template-columns: 1fr; }
+      .technik-card { padding: 20px 16px; }
+      .technik-card-title { font-size: 18px; }
+      .technik-card p { font-size: 14px; }
+
+      /* --- Interview / Transkript --- */
+      .interview-wrap { max-width: 100%; }
+      .interview-entry {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+      }
+      .interview-speaker { font-size: 11px; letter-spacing: 0.08em; }
+      .interview-text { font-size: 14px; line-height: 1.6; }
+      .interview-stage { font-size: 11px; padding: 14px 10px; letter-spacing: 0.15em; }
+
+      /* --- Hall of Fame Tabelle --- */
+      .hof-table { font-size: 13px; }
+      .hof-table thead th { padding: 10px 10px; font-size: 10px; letter-spacing: 0.1em; }
+      .hof-table tbody td { padding: 12px 10px; font-size: 13px; }
+      /* Datum-Spalte auf Mobil ausblenden um Platz zu sparen */
+      .hof-table thead th:first-child,
+      .hof-table tbody td:first-child { display: none; }
+
+      /* --- Biografie --- */
+      .bio-grid { grid-template-columns: 1fr; }
+      .bio-text p { font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
+      .studio-foto-wrap { margin: 24px 0; }
+      .bio-sidebar-card { padding: 14px 16px; }
+      .bio-sidebar-card-value { font-size: 15px; }
+
+      /* --- Footer --- */
+      .footer { padding: 24px 16px; }
+      .footer-text { font-size: 10px; letter-spacing: 0.1em; }
+    }
+
+    /* ===== SEHR KLEINE GERÄTE (max 380px, z.B. iPhone SE) ===== */
+    @media (max-width: 380px) {
+      .hero-name { font-size: 38px; }
+      .torwand-ball { width: 30px; height: 30px; font-size: 12px; }
+      .torwand-counter { gap: 4px; }
+      .stat-number { font-size: 36px; }
+      .hof-table tbody td { font-size: 12px; padding: 10px 8px; }
     }
   </style>
 </head>
