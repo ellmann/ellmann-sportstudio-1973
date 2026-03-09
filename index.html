@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siegfried Ellmann – ZDF-Torwandkiller aus Varrelbusch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Special+Elite&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== AUTHENTISCHES ZDF-SPORTSTUDIO 1970er DESIGN ===== */
+    /* Farbpalette aus historischen Aufnahmen:
+       - Dunkelgrün: #1a3a1a / #2d5a2d (Studiowände, Hintergrund)
+       - Gelb/Ocker: #d4a017 / #c8960c (Schriftzug, Akzente)
+       - Grau/Beton: #4a4a4a / #2a2a2a (Strukturelemente)
+       - Weiß: #f0ede8 (leicht vergilbt, Papieroptik)
+       - Schwarz: #0d0d0d
+    */
+
+    :root {
+      --gruen-dunkel: #1c3a1c;
+      --gruen-mittel: #2a5228;
+      --gruen-hell: #3d6e3a;
+      --gelb: #c8960c;
+      --gelb-hell: #e8b020;
+      --grau-dunkel: #1a1a1a;
+      --grau-mittel: #2e2e2e;
+      --grau-hell: #4a4a4a;
+      --weiss: #f0ede8;
+      --weiss-vergilbt: #e8e0d0;
+      --schwarz: #0a0a0a;
+      --rot-akzent: #8b1a1a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--gruen-dunkel);
+      color: var(--weiss);
+      font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== INTRO OVERLAY ===== */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--gruen-dunkel);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.8s ease;
+    }
+    #intro-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .intro-logo-band {
+      background: var(--grau-dunkel);
+      border-top: 4px solid var(--gelb);
+      border-bottom: 4px solid var(--gelb);
+      width: 100%;
+      padding: 18px 0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .intro-logo-band .zdf-auge {
+      width: 70px;
+      margin-bottom: 8px;
+    }
+    .intro-sendung {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(14px, 2.5vw, 20px);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--weiss-vergilbt);
+      text-transform: lowercase;
+    }
+    .intro-titel {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(42px, 9vw, 110px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--gelb-hell);
+      text-transform: lowercase;
+      line-height: 0.9;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .intro-datum {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: clamp(13px, 2vw, 18px);
+      letter-spacing: 0.3em;
+      color: var(--weiss-vergilbt);
+      text-transform: uppercase;
+      margin-bottom: 50px;
+    }
+    .intro-start {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.4em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      border: 1px solid var(--gelb);
+      padding: 12px 30px;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ===== TICKER ===== */
+    .ticker-wrap {
+      background: var(--grau-dunkel);
+      border-top: 2px solid var(--gelb);
+      border-bottom: 2px solid var(--gelb);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 45s linear infinite;
+    }
+    .ticker-inner span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      padding: 0 60px;
+    }
+    .ticker-inner span::before {
+      content: '⚽ ';
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== STUDIO-HEADER BAND ===== */
+    .studio-header {
+      background: var(--grau-dunkel);
+      border-bottom: 3px solid var(--gelb);
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .studio-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .studio-header-left img {
+      height: 36px;
+      filter: brightness(0.9);
+    }
+    .studio-header-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--weiss-vergilbt);
+      text-transform: lowercase;
+      line-height: 1.4;
+    }
+    .studio-header-title strong {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--weiss);
+      text-transform: lowercase;
+    }
+    .studio-header-right {
+      text-align: right;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--gelb);
+      text-transform: uppercase;
+    }
+
+    /* ===== AUDIO-PLAYER LEISTE ===== */
+    .audio-bar {
+      background: #111;
+      border-bottom: 1px solid #333;
+      padding: 8px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .audio-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .audio-bar audio {
+      flex: 1;
+      height: 32px;
+      filter: sepia(0.3) hue-rotate(60deg);
+    }
+    .audio-note {
+      font-size: 10px;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    /* ===== HERO SEKTION ===== */
+    .hero {
+      background: var(--gruen-dunkel);
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0,0,0,0.08) 3px,
+          rgba(0,0,0,0.08) 4px
+        );
+      padding: 60px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--gelb), var(--gelb-hell), var(--gelb));
+    }
+
+    /* Großes Schild wie im Studio */
+    .studio-schild {
+      background: var(--gruen-mittel);
+      border: 3px solid var(--grau-hell);
+      border-radius: 4px;
+      padding: 16px 40px;
+      display: inline-block;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .studio-schild-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(22px, 4vw, 44px);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--gelb-hell);
+      text-transform: lowercase;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      max-width: 1200px;
+    }
+
+    .hero-name-block {
+      padding: 30px 0;
+    }
+    .hero-subtitle {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.35em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--weiss);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+    }
+    .hero-verein {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      color: var(--weiss-vergilbt);
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
+    .hero-treffer-badge {
+      display: inline-block;
+      background: var(--gelb);
+      color: var(--schwarz);
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+    }
+
+    /* ===== TORWAND SVG ===== */
+    .torwand-container {
+      position: relative;
+    }
+    .torwand-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .torwand-svg-wrap {
+      background: #111;
+      border: 2px solid var(--grau-hell);
+      padding: 20px;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+    }
+    .torwand-counter {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    .torwand-ball {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--grau-hell);
+      background: var(--grau-mittel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--grau-hell);
+      transition: all 0.3s;
+    }
+    .torwand-ball.treffer {
+      background: var(--gelb);
+      border-color: var(--gelb-hell);
+      color: var(--schwarz);
+      box-shadow: 0 0 12px rgba(200, 150, 12, 0.5);
+    }
+    .torwand-result-text {
+      text-align: center;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--weiss-vergilbt);
+      text-transform: uppercase;
+      margin-top: 10px;
+      opacity: 0.7;
+    }
+
+    /* ===== TRENNLINIE ===== */
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--gruen-dunkel), var(--gelb) 20%, var(--gelb) 80%, var(--gruen-dunkel));
+      margin: 0;
+    }
+
+    /* ===== ALLGEMEINE SEKTIONEN ===== */
+    .section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-bg-dark {
+      background: var(--grau-dunkel);
+    }
+    .section-bg-gruen {
+      background: var(--gruen-dunkel);
+    }
+    .section-bg-mittel {
+      background: #111;
+    }
+
+    .section-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 600;
+      color: var(--weiss);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--gelb);
+    }
+
+    /* ===== STECKBRIEF ===== */
+    .steckbrief-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--grau-hell);
+    }
+    .steckbrief-item {
+      background: var(--grau-mittel);
+      padding: 20px 24px;
+    }
+    .steckbrief-item.full-width {
+      grid-column: 1 / -1;
+      background: var(--gruen-dunkel);
+      border-left: 4px solid var(--gelb);
+    }
+    .steckbrief-key {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .steckbrief-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--weiss);
+    }
+    .steckbrief-value.highlight {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gelb-hell);
+    }
+
+    /* ===== VIDEO-SEKTION ===== */
+    .video-section-wrap {
+      background: #0a0a0a;
+      padding: 60px 40px;
+    }
+    .retro-tv {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    /* Retro-TV-Rahmen: grüner Rand wie Studio-Monitor */
+    .tv-frame {
+      background: #1a1a1a;
+      border: 8px solid var(--grau-hell);
+      border-radius: 8px;
+      box-shadow:
+        0 0 0 2px #111,
+        0 0 0 4px var(--gelb),
+        0 0 0 6px #111,
+        0 20px 60px rgba(0,0,0,0.8);
+      overflow: hidden;
+      position: relative;
+    }
+    .tv-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    .tv-frame video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+    .tv-caption {
+      background: var(--grau-dunkel);
+      border-top: 2px solid var(--gelb);
+      padding: 12px 20px;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ===== STATISTIK-KARTEN ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--grau-hell);
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: var(--gruen-dunkel);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--gelb-hell);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--weiss-vergilbt);
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* ===== TORWAND FOTO ===== */
+    .torwand-foto-wrap {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .torwand-foto-wrap img {
+      width: 100%;
+      max-width: 700px;
+      display: block;
+      filter: sepia(0.2) contrast(1.1);
+      border: 2px solid var(--grau-hell);
+    }
+    .torwand-foto-caption {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--grau-hell);
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* ===== TECHNIK-KARTEN ===== */
+    .technik-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--grau-hell);
+    }
+    .technik-card {
+      background: var(--grau-mittel);
+      padding: 30px;
+    }
+    .technik-card-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .technik-card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--weiss);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .technik-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--weiss-vergilbt);
+      opacity: 0.85;
+    }
+
+    /* ===== INTERVIEW / TRANSKRIPT ===== */
+    .interview-wrap {
+      max-width: 800px;
+    }
+    .interview-entry {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .interview-entry:last-child {
+      border-bottom: none;
+    }
+    .interview-speaker {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 3px;
+    }
+    .interview-speaker.thomas {
+      color: var(--gelb);
+    }
+    .interview-speaker.ellmann {
+      color: #7ec87e;
+    }
+    .interview-speaker.stage {
+      color: var(--grau-hell);
+      font-style: italic;
+      font-weight: 300;
+    }
+    .interview-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--weiss-vergilbt);
+    }
+    .interview-text em {
+      color: var(--grau-hell);
+      font-style: italic;
+    }
+    .interview-text strong {
+      color: var(--weiss);
+    }
+    .interview-stage {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      padding: 20px;
+      border: 1px solid var(--gelb);
+      background: rgba(200, 150, 12, 0.05);
+      margin: 10px 0;
+    }
+
+    /* ===== HALL OF FAME TABELLE ===== */
+    .hof-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+    .hof-table thead tr {
+      background: var(--gelb);
+    }
+    .hof-table thead th {
+      padding: 14px 20px;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--schwarz);
+      font-weight: 700;
+      text-align: left;
+    }
+    .hof-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s;
+    }
+    .hof-table tbody tr:hover {
+      background: rgba(255,255,255,0.04);
+    }
+    .hof-table tbody tr.highlight-row {
+      background: rgba(200, 150, 12, 0.12);
+      border-left: 4px solid var(--gelb);
+    }
+    .hof-table tbody td {
+      padding: 16px 20px;
+      font-size: 15px;
+      color: var(--weiss-vergilbt);
+    }
+    .hof-table tbody tr.highlight-row td {
+      color: var(--weiss);
+      font-weight: 700;
+    }
+    .treffer-badge {
+      display: inline-block;
+      background: var(--gelb);
+      color: var(--schwarz);
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 4px 12px;
+    }
+    .treffer-badge.highlight {
+      background: var(--gelb-hell);
+    }
+
+    /* ===== BIOGRAFIE ===== */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+    .bio-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--weiss-vergilbt);
+      margin-bottom: 20px;
+    }
+    .bio-text p strong {
+      color: var(--weiss);
+    }
+    .bio-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .bio-sidebar-card {
+      background: var(--gruen-dunkel);
+      border-left: 4px solid var(--gelb);
+      padding: 20px;
+    }
+    .bio-sidebar-card-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gelb);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .bio-sidebar-card-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      color: var(--weiss);
+    }
+
+    /* ===== STUDIO-FOTO ===== */
+    .studio-foto-wrap {
+      margin: 40px 0;
+    }
+    .studio-foto-wrap img {
+      width: 100%;
+      max-width: 600px;
+      filter: sepia(0.15) contrast(1.05);
+      border: 2px solid var(--grau-hell);
+    }
+    .studio-foto-caption {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--grau-hell);
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--schwarz);
+      border-top: 4px solid var(--gelb);
+      padding: 40px;
+      text-align: center;
+    }
+    .footer-logo {
+      margin-bottom: 16px;
+    }
+    .footer-logo img {
+      height: 40px;
+      opacity: 0.7;
+    }
+    .footer-text {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--grau-hell);
+      text-transform: uppercase;
+      line-height: 2;
+    }
+    .footer-text a {
+      color: var(--gelb);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero-content { grid-template-columns: 1fr; gap: 30px; }
+      .steckbrief-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .technik-grid { grid-template-columns: 1fr; }
+      .bio-grid { grid-template-columns: 1fr; }
+      .interview-entry { grid-template-columns: 1fr; gap: 6px; }
+      .section { padding: 40px 20px; }
+      .studio-header { padding: 10px 20px; }
+      .audio-bar { padding: 8px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- AUDIO (einmalig, kein Loop) -->
+<audio id="theme-audio" preload="auto">
+  <source src="audio/sportstudio_theme.mp3" type="audio/mpeg">
+</audio>
+
+<!-- INTRO OVERLAY -->
+<div id="intro-overlay" onclick="startPage()">
+  <div class="intro-logo-band">
+    <!-- ZDF-Auge SVG inline -->
+    <svg class="zdf-auge" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+      <rect width="120" height="60" rx="6" fill="#1a1a1a"/>
+      <ellipse cx="60" cy="30" rx="44" ry="22" fill="none" stroke="#d4a017" stroke-width="3"/>
+      <ellipse cx="60" cy="30" rx="12" ry="12" fill="#d4a017"/>
+      <ellipse cx="60" cy="30" rx="6" ry="6" fill="#1a1a1a"/>
+      <text x="60" y="54" text-anchor="middle" font-family="Arial" font-size="9" fill="#d4a017" letter-spacing="3">ZDF</text>
+    </svg>
+    <div class="intro-sendung">das aktuelle sportstudio</div>
+  </div>
+  <div class="intro-titel">Siegfried<br>Ellmann</div>
+  <div class="intro-datum">Samstag · 3. März 1973 · Wiesbaden</div>
+  <div class="intro-start">▶ Klicken zum Starten</div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>Siegfried Ellmann · BV Varrelbusch · 4 Treffer an der ZDF-Torwand · 3. März 1973</span>
+    <span>Moderatorin: Carmen Thomas · „Der große ZDF-Torwand-Aufputzer vom Dienst"</span>
+    <span>26–27 Mal alle 6 Treffer bei regionalen Schießen · Bezirksliga · Legende</span>
+    <span>Siegfried Ellmann · BV Varrelbusch · 4 Treffer an der ZDF-Torwand · 3. März 1973</span>
+    <span>Moderatorin: Carmen Thomas · „Der große ZDF-Torwand-Aufputzer vom Dienst"</span>
+    <span>26–27 Mal alle 6 Treffer bei regionalen Schießen · Bezirksliga · Legende</span>
+  </div>
+</div>
+
+<!-- STUDIO-HEADER -->
+<div class="studio-header">
+  <div class="studio-header-left">
+    <svg width="50" height="28" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+      <rect width="120" height="60" rx="4" fill="#111"/>
+      <ellipse cx="60" cy="30" rx="44" ry="22" fill="none" stroke="#c8960c" stroke-width="2.5"/>
+      <ellipse cx="60" cy="30" rx="12" ry="12" fill="#c8960c"/>
+      <ellipse cx="60" cy="30" rx="6" ry="6" fill="#111"/>
+      <text x="60" y="54" text-anchor="middle" font-family="Arial" font-size="9" fill="#c8960c" letter-spacing="3">ZDF</text>
+    </svg>
+    <div class="studio-header-title">
+      <strong>das aktuelle sportstudio</strong><br>
+      Samstag, 23:00 Uhr · Wiesbaden
+    </div>
+  </div>
+  <div class="studio-header-right">
+    Samstag<br>3. März 1973
+  </div>
+</div>
+
+<!-- AUDIO-PLAYER -->
+<div class="audio-bar">
+  <div class="audio-label">Titelmelodie</div>
+  <audio id="music-player" controls src="audio/sportstudio_theme.mp3" style="flex:1;height:30px;"></audio>
+  <div class="audio-note">© ZDF</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="studio-schild">
+    <div class="studio-schild-text">das aktuelle sport-studio</div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-name-block">
+      <div class="hero-subtitle">Der große ZDF-Torwand-Aufputzer vom Dienst</div>
+      <div class="hero-name">Siegfried<br>Ellmann</div>
+      <div class="hero-verein">BV Varrelbusch · Mittelstürmer · Bezirksliga</div>
+      <div class="hero-treffer-badge">4 Treffer an der ZDF-Torwand · 3. März 1973</div>
+    </div>
+
+    <div class="torwand-container">
+      <div class="torwand-label">Die ZDF-Torwand · 3. März 1973</div>
+      <div class="torwand-svg-wrap">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+          <!-- Torrahmen -->
+          <rect x="10" y="10" width="380" height="240" rx="2" fill="#0d0d0d" stroke="#555" stroke-width="3"/>
+          <!-- Tornetz-Gitter -->
+          <g stroke="#333" stroke-width="0.8" opacity="0.6">
+            <!-- Vertikale Linien -->
+            <line x1="50" y1="10" x2="50" y2="250"/>
+            <line x1="90" y1="10" x2="90" y2="250"/>
+            <line x1="130" y1="10" x2="130" y2="250"/>
+            <line x1="170" y1="10" x2="170" y2="250"/>
+            <line x1="210" y1="10" x2="210" y2="250"/>
+            <line x1="250" y1="10" x2="250" y2="250"/>
+            <line x1="290" y1="10" x2="290" y2="250"/>
+            <line x1="330" y1="10" x2="330" y2="250"/>
+            <line x1="370" y1="10" x2="370" y2="250"/>
+            <!-- Horizontale Linien -->
+            <line x1="10" y1="50" x2="390" y2="50"/>
+            <line x1="10" y1="90" x2="390" y2="90"/>
+            <line x1="10" y1="130" x2="390" y2="130"/>
+            <line x1="10" y1="170" x2="390" y2="170"/>
+            <line x1="10" y1="210" x2="390" y2="210"/>
+          </g>
+          <!-- Schachbrettmuster Torwand-Rand -->
+          <rect x="10" y="10" width="380" height="240" rx="2" fill="none" stroke="#666" stroke-width="6"
+            stroke-dasharray="20,20"/>
+          <!-- Oberes linkes Loch (TREFFER) -->
+          <circle cx="100" cy="75" r="38" fill="#1a1a1a" stroke="#888" stroke-width="3"/>
+          <circle cx="100" cy="75" r="36" fill="#0a0a0a"/>
+          <circle cx="100" cy="75" r="30" fill="#c8960c" opacity="0.9"/>
+          <text x="100" y="82" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#0a0a0a">✓</text>
+          <!-- Oberes rechtes Loch (TREFFER) -->
+          <circle cx="300" cy="75" r="38" fill="#1a1a1a" stroke="#888" stroke-width="3"/>
+          <circle cx="300" cy="75" r="36" fill="#0a0a0a"/>
+          <circle cx="300" cy="75" r="30" fill="#c8960c" opacity="0.9"/>
+          <text x="300" y="82" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#0a0a0a">✓</text>
+          <!-- Unteres linkes Loch (TREFFER) -->
+          <circle cx="100" cy="190" r="38" fill="#1a1a1a" stroke="#888" stroke-width="3"/>
+          <circle cx="100" cy="190" r="36" fill="#0a0a0a"/>
+          <circle cx="100" cy="190" r="30" fill="#c8960c" opacity="0.9"/>
+          <text x="100" y="197" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#0a0a0a">✓</text>
+          <!-- Unteres rechtes Loch (TREFFER) -->
+          <circle cx="300" cy="190" r="38" fill="#1a1a1a" stroke="#888" stroke-width="3"/>
+          <circle cx="300" cy="190" r="36" fill="#0a0a0a"/>
+          <circle cx="300" cy="190" r="30" fill="#c8960c" opacity="0.9"/>
+          <text x="300" y="197" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#0a0a0a">✓</text>
+          <!-- Mittleres Loch oben (VERFEHLT) -->
+          <circle cx="200" cy="75" r="38" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
+          <circle cx="200" cy="75" r="30" fill="#1a1a1a"/>
+          <!-- Mittleres Loch unten (VERFEHLT) -->
+          <circle cx="200" cy="190" r="38" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
+          <circle cx="200" cy="190" r="30" fill="#1a1a1a"/>
+          <!-- Label -->
+          <text x="200" y="248" text-anchor="middle" font-family="Arial" font-size="11" fill="#666" letter-spacing="4">TORWAND</text>
+        </svg>
+      </div>
+      <div class="torwand-counter">
+        <div class="torwand-ball treffer">1</div>
+        <div class="torwand-ball treffer">2</div>
+        <div class="torwand-ball treffer">3</div>
+        <div class="torwand-ball treffer">4</div>
+        <div class="torwand-ball">5</div>
+        <div class="torwand-ball">6</div>
+      </div>
+      <div class="torwand-result-text">4 von 6 Treffern · 3. März 1973</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- STECKBRIEF -->
+<div class="section-bg-dark">
+  <div class="section">
+    <div class="section-label">Steckbrief</div>
+    <div class="section-title">Siegfried Ellmann</div>
+    <div class="steckbrief-grid">
+      <div class="steckbrief-item">
+        <div class="steckbrief-key">Geburtsdatum</div>
+        <div class="steckbrief-value">12. März 1946</div>
+      </div>
+      <div class="steckbrief-item">
+        <div class="steckbrief-key">Geburtsort</div>
+        <div class="steckbrief-value">Bonrechtern bei Visbek</div>
+      </div>
+      <div class="steckbrief-item">
+        <div class="steckbrief-key">Wohnort</div>
+        <div class="steckbrief-value">Varrelbusch, Gemeinde Garrel</div>
+      </div>
+      <div class="steckbrief-item">
+        <div class="steckbrief-key">Familienstand</div>
+        <div class="steckbrief-value">Verwitwet · 4 Kinder · 8 Enkelkinder</div>
+      </div>
+      <div class="steckbrief-item">
+        <div class="steckbrief-key">Beruf (1973)</div>
+        <div class="steckbrief-value">Reisender in der Eiscreme-Branche</div>
+      </div>
+      <div class="steckbrief-item">
+        <div class="steckbrief-key">Verein</div>
+        <div class="steckbrief-value">BV Varrelbusch · Mittelstürmer · Bezirksliga</div>
+      </div>
+      <div class="steckbrief-item full-width">
+        <div class="steckbrief-key">TV-Auftritt</div>
+        <div class="steckbrief-value highlight">4 Treffer</div>
+        <div style="font-size:13px;color:var(--weiss-vergilbt);margin-top:4px;letter-spacing:0.1em;">ZDF-Sportstudio · 3. März 1973 · Wiesbaden · Moderatorin: Carmen Thomas</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- VIDEO -->
+<div class="video-section-wrap">
+  <div class="section" style="max-width:960px;">
+    <div class="section-label">Zeitdokument</div>
+    <div class="section-title">Der TV-Auftritt · 3. März 1973</div>
+    <div class="retro-tv">
+      <div class="tv-frame">
+        <iframe
+          src="https://archive.org/embed/ellmann_1973_web"
+          width="100%"
+          style="aspect-ratio:16/9;border:none;display:block;"
+          allowfullscreen
+          allow="fullscreen"
+          title="Siegfried Ellmann – ZDF Sportstudio, 3. März 1973"
+        ></iframe>
+      </div>
+      <div class="tv-caption">ZDF · das aktuelle sportstudio · 3. März 1973 · Wiesbaden · Moderatorin: Carmen Thomas · Gast: Siegfried Ellmann, BV Varrelbusch</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- AN DER TORWAND -->
+<div class="section-bg-gruen">
+  <div class="section">
+    <div class="section-label">Die Legende</div>
+    <div class="section-title">An der ZDF-Torwand</div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Treffer im ZDF-Studio</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">26–27</div>
+        <div class="stat-label">Mal 6/6 bei regionalen Schießen</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~10</div>
+        <div class="stat-label">Gewonnene Fahrräder</div>
+      </div>
+    </div>
+
+    <div class="torwand-foto-wrap">
+      <img src="images/torwand_1964.jpg" alt="Die originale ZDF-Torwand">
+      <div class="torwand-foto-caption">Die originale ZDF-Torwand · Seit 23. August 1964 im Einsatz · Erfunden von Heinrich Klein</div>
+    </div>
+
+    <div class="section-label" style="margin-top:40px;">Ellmanns Geheimnis</div>
+    <div class="technik-grid">
+      <div class="technik-card">
+        <div class="technik-card-label">Unteres Loch</div>
+        <div class="technik-card-title">Das Aufdeppen</div>
+        <p>Den Ball kurz vor dem Loch auf einmal <strong>aufdeppen</strong> lassen – er springt flach auf und trifft das Ziel von unten. Eine Technik, die Ellmann über Jahre perfektioniert hatte.</p>
+      </div>
+      <div class="technik-card">
+        <div class="technik-card-label">Oberes Loch</div>
+        <div class="technik-card-title">Der Direktschuss</div>
+        <p>Direktschuss – präzise und ohne Aufpraller, <strong>direkt ins Loch</strong>. Keine Tricks, nur Genauigkeit. Jahrelange Übung auf Volksfesten und Schützenfesten im Oldenburger Münsterland.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- INTERVIEW -->
+<div class="section-bg-mittel">
+  <div class="section">
+    <div class="section-label">Original-Wortlaut</div>
+    <div class="section-title">Das Interview · Carmen Thomas &amp; Siegfried Ellmann</div>
+
+    <div class="interview-wrap">
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Tja, meine Damen und Herren, jetzt wollen wir einmal die besten Bundesligaspieler das Fürchten lehren. […] Trotzdem freue ich mich, Ihnen heute Abend Herrn Ellmann vorstellen zu können, der der große ZDF-Torwand Aufputzer vom Dienst ist. Herr Ellmann, seit wann haben Sie sich eigentlich darauf spezialisiert?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Seit circa fünf Jahren kann man sagen, ist es in meiner Heimat so, dass man das genauso macht, wie es normalerweise hier im Fernsehen auch stattfindet. Dann allerdings Preise aufsetzt, entweder kleinere Geldpreise oder…"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Mit welchen greifbaren Erfolgen haben Sie denn in diesen fünf Jahren bereits auf diese Torwand gezielt?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Ja, ich bin damit zufrieden […] dass ich nun überall hinfahre, wo so was stattfindet. Und da sieht es nun so aus, dass man da beim Schießen eben normalerweise, nicht so wie es normalerweise hier ist, mit vier mehr den Erfolg hat, sondern man muss da schon echt fünf oder sechs schießen."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Und was haben Sie schon da alles bei gewonnen?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Das kann man sehr… Nein, etwa sagen wir mal <strong>zehn Fahrräder. Gebrauchtwagen, Mofa, Stereoanlage, Fernseher</strong> und so weiter. Und natürlich Geldpreise daneben."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Was machen Sie denn mit den ganzen Sachen? Zehn Fahrräder kann man ja wohl schlicht gebrauchen."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Nicht mehr ganz, nein. Die werden eben verkauft."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Aber davon ernähren Sie nicht Ihre Familie. Wovon denn?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Ich bin <strong>Reisender in der Eiscreme-Branche.</strong>"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Das muss ja sehr schön für Ihre Kinder sein. Sie haben doch – das haben doch…"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Ich habe <strong>zwei kleine Mädchen</strong>, ja. Alle von drei und vier Jahren."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Ach wunderbar, die schwimmen in Eiscreme."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Nee, so doll ist es nicht." <em>[lacht]</em></div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Haben Sie denn nun einen unheimlichen Trick? Sind Sie ein Naturtalent oder sind Sie nur fleißig?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Da weiß ich mir, dass ich selbst persönlich spiele zum Beispiel auch Fußball, zwar nur in der Bezirksliga. Aber es ist eben so, dass ich zum Beispiel unten schieße, dass sie den Ball kurz vor dem Loch auf einmal <strong>aufdeppen</strong>. Und oben, naja, oben muss er nochmal direkt reingehen."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Inzwischen dürften Sie ja wohl zum Schrecken aller kommerziellen Torwandbesitzer geraten sein. Hat das schon Folgen gehabt?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„In etwa, man hat mich da verschiedene schon mal <strong>ausgeschlossen</strong> von verschiedenen Veranstaltungen. Indem man nun sagte, der Gewinner der letzten drei Jahre darf nicht mitmachen oder in dieser Art eben."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Im Ernst?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Ja, das gibt es."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Wie oft haben Sie denn schon sechsmal reingetroffen?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„<strong>26, 27 Mal etwa.</strong>"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-stage">[ Torwandschießen — Ellmann erzielt 4 von 6 Treffern vor Millionen Zuschauern ]</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„<strong>Ich finde vier großartig</strong>, wenn ich das so sagen darf. Sind Sie denn nun dementsprechend auch der Müller des BV Varrelbusch, bei dem Sie spielen?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Ich spiele auch Mittelstürmer, aber ganz so gut, ne?"</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker thomas">Carmen Thomas</div>
+        <div class="interview-text">„Ja, kann ja noch kommen."</div>
+      </div>
+      <div class="interview-entry">
+        <div class="interview-speaker ellmann">Siegfried Ellmann</div>
+        <div class="interview-text">„Mein Alter wohl nicht mehr." <em>[lacht]</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- HALL OF FAME -->
+<div class="section-bg-dark">
+  <div class="section">
+    <div class="section-label">Hall of Fame</div>
+    <div class="section-title">Die 4-Treffer-Schützen vor Ellmann</div>
+    <p style="font-size:15px;line-height:1.7;color:var(--weiss-vergilbt);margin-bottom:30px;max-width:700px;">
+      Als Siegfried Ellmann am 3. März 1973 vier Treffer erzielte, stellte er sich auf eine Stufe mit drei der bekanntesten Profifußballer Deutschlands. Alle drei waren Nationalspieler und Bundesligastars – Ellmann war Bezirksligaspieler aus dem Oldenburger Münsterland.
+    </p>
+    <table class="hof-table">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Schütze</th>
+          <th>Verein</th>
+          <th>Treffer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>29. Jan. 1966</td>
+          <td>Toni Allemann</td>
+          <td>1. FC Nürnberg (Schweizer Nationalspieler)</td>
+          <td><span class="treffer-badge">4</span></td>
+        </tr>
+        <tr>
+          <td>13. Nov. 1971</td>
+          <td>Jürgen Grabowski</td>
+          <td>Eintracht Frankfurt</td>
+          <td><span class="treffer-badge">4</span></td>
+        </tr>
+        <tr>
+          <td>13. Mai 1972</td>
+          <td>Franz Beckenbauer</td>
+          <td>FC Bayern München</td>
+          <td><span class="treffer-badge">4</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>3. März 1973</td>
+          <td><strong>Siegfried Ellmann</strong></td>
+          <td><strong>BV Varrelbusch (Bezirksliga!)</strong></td>
+          <td><span class="treffer-badge highlight">4</span></td>
+        </tr>
+        <tr>
+          <td>18. Mai 1974</td>
+          <td>Günter Netzer <em>(erster 5-Treffer)</em></td>
+          <td>Real Madrid</td>
+          <td><span class="treffer-badge">5</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- BIOGRAFIE -->
+<div class="section-bg-gruen">
+  <div class="section">
+    <div class="section-label">Porträt</div>
+    <div class="section-title">Leben &amp; Karriere</div>
+
+    <div class="studio-foto-wrap">
+      <img src="images/sportstudio_70er_studio.jpg" alt="Das ZDF-Sportstudio in den 1970er Jahren">
+      <div class="studio-foto-caption">Das ZDF-Sportstudio in den 1970er Jahren – Wiesbaden · Grüne Kulisse, gelber Schriftzug, die Torwand im Hintergrund</div>
+    </div>
+
+    <div class="bio-grid">
+      <div class="bio-text">
+        <p>Siegfried Ellmann wurde am <strong>12. März 1946</strong> in <strong>Bonrechtern bei Visbek</strong> im Oldenburger Münsterland geboren. Er siedelte sich in <strong>Varrelbusch</strong> an, einem kleinen Ort in der Gemeinde Garrel im Landkreis Cloppenburg, Niedersachsen. Ellmann ist verwitwet und hat heute <strong>vier Kinder</strong> und <strong>acht Enkelkinder</strong>.</p>
+        <p>Fußballerisch war Ellmann sein Leben lang dem <strong>BV Varrelbusch</strong> treu, wo er als Mittelstürmer in der Bezirksliga spielte. Sein Vereinskamerad Werner Busse, der spätere NFV-Kreisvorsitzende, spielte überwiegend in der zweiten Mannschaft – und hatte dabei stets Ellmann als Konkurrenten auf seiner Position vor sich.</p>
+        <p>Zum Zeitpunkt seines TV-Auftritts 1973 arbeitete Ellmann als <strong>Reisender in der Eiscreme-Branche</strong> – ein Beruf, der ihm erlaubte, an Wochenenden Torwandschießen in der ganzen Region zu besuchen. Über fünf Jahre hatte er sich dabei als unschlagbarer Schütze einen Namen gemacht: rund <strong>zehn Fahrräder, ein Gebrauchtwagen, ein Mofa, eine Stereoanlage und ein Fernseher</strong> zählten zu seinen Gewinnen.</p>
+        <p>So dominant war er, dass er von mehreren Veranstaltungen ausgeschlossen wurde: <em>„Man hat mich da verschiedene schon mal ausgeschlossen von verschiedenen Veranstaltungen. Indem man nun sagte, der Gewinner der letzten drei Jahre darf nicht mitmachen."</em></p>
+        <p>Neben dem Fußball war Ellmann Mitglied der <strong>St.-Hubertus-Schützengilde Varrelbusch</strong>, in der er 2011 für <strong>50-jährige Mitgliedschaft</strong> geehrt wurde. Im Jahr 2023 arbeitete er als Fahrer für das Garreler Altersheim und lieferte <strong>„Essen auf Rädern"</strong> aus – eine Tätigkeit, die ihm nach eigenen Worten große Freude bereitete.</p>
+        <p>Seine Geschichte wurde vom Journalisten <strong>Stephan Tönnies</strong> im Buch <em>Fußballgeschichten aus dem Oldenburger Münsterland</em> (Herkules-Verlag) verewigt, unter dem Titel: <strong>„Siegfried Ellmann, ZDF-Torwandkiller aus Varrelbusch."</strong></p>
+      </div>
+      <div class="bio-sidebar">
+        <div class="bio-sidebar-card">
+          <div class="bio-sidebar-card-label">Rekord</div>
+          <div class="bio-sidebar-card-value">26–27 Mal alle 6 Treffer</div>
+        </div>
+        <div class="bio-sidebar-card">
+          <div class="bio-sidebar-card-label">Gewonnene Preise</div>
+          <div class="bio-sidebar-card-value">~10 Fahrräder, Gebrauchtwagen, Mofa, Stereoanlage, Fernseher</div>
+        </div>
+        <div class="bio-sidebar-card">
+          <div class="bio-sidebar-card-label">Ausschlüsse</div>
+          <div class="bio-sidebar-card-value">Von mehreren Veranstaltungen verbannt</div>
+        </div>
+        <div class="bio-sidebar-card">
+          <div class="bio-sidebar-card-label">Schützengilde</div>
+          <div class="bio-sidebar-card-value">50 Jahre Mitglied St.-Hubertus-Gilde Varrelbusch</div>
+        </div>
+        <div class="bio-sidebar-card">
+          <div class="bio-sidebar-card-label">Heute</div>
+          <div class="bio-sidebar-card-value">Fahrer „Essen auf Rädern", Garreler Altersheim (2023)</div>
+        </div>
+        <div class="bio-sidebar-card">
+          <div class="bio-sidebar-card-label">Buch</div>
+          <div class="bio-sidebar-card-value">Stephan Tönnies: Fußballgeschichten aus dem Oldenburger Münsterland (Herkules-Verlag)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">
+    <svg width="60" height="30" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+      <rect width="120" height="60" rx="4" fill="#111"/>
+      <ellipse cx="60" cy="30" rx="44" ry="22" fill="none" stroke="#c8960c" stroke-width="2.5"/>
+      <ellipse cx="60" cy="30" rx="12" ry="12" fill="#c8960c"/>
+      <ellipse cx="60" cy="30" rx="6" ry="6" fill="#111"/>
+      <text x="60" y="54" text-anchor="middle" font-family="Arial" font-size="9" fill="#c8960c" letter-spacing="3">ZDF</text>
+    </svg>
+  </div>
+  <div class="footer-text">
+    das aktuelle sportstudio · ZDF · Samstag, 3. März 1973 · Wiesbaden<br>
+    Moderatorin: Carmen Thomas · Gast: Siegfried Ellmann, BV Varrelbusch<br><br>
+    Quellen: NWZ Online · OM-Online · Stephan Tönnies (Herkules-Verlag) · ZDF-Archiv · Wikipedia
+  </div>
+</div>
+
+<script>
+  function startPage() {
+    const overlay = document.getElementById('intro-overlay');
+    overlay.classList.add('hidden');
+    setTimeout(() => { overlay.style.display = 'none'; }, 800);
+
+    // Titelmelodie EINMALIG abspielen (kein Loop)
+    const audio = document.getElementById('theme-audio');
+    if (audio) {
+      audio.loop = false;
+      audio.volume = 0.6;
+      audio.play().catch(() => {});
+    }
+  }
+
+  // Torwand-Animation beim Scrollen
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stat-card, .steckbrief-item, .technik-card, .bio-sidebar-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
